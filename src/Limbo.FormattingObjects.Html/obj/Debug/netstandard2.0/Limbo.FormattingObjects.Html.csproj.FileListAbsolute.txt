@@ -1,0 +1,10 @@
+D:\Repositories\Limbo.FormattingObjects.Html\Limbo.FormattingObjects.Html\obj\Debug\netstandard2.0\Limbo.FormattingObjects.Html.csproj.AssemblyReference.cache
+D:\Repositories\Limbo.FormattingObjects.Html\Limbo.FormattingObjects.Html\obj\Debug\netstandard2.0\Limbo.FormattingObjects.Html.GeneratedMSBuildEditorConfig.editorconfig
+D:\Repositories\Limbo.FormattingObjects.Html\Limbo.FormattingObjects.Html\obj\Debug\netstandard2.0\Limbo.FormattingObjects.Html.AssemblyInfoInputs.cache
+D:\Repositories\Limbo.FormattingObjects.Html\Limbo.FormattingObjects.Html\obj\Debug\netstandard2.0\Limbo.FormattingObjects.Html.AssemblyInfo.cs
+D:\Repositories\Limbo.FormattingObjects.Html\Limbo.FormattingObjects.Html\obj\Debug\netstandard2.0\Limbo.FormattingObjects.Html.csproj.CoreCompileInputs.cache
+D:\Repositories\Limbo.FormattingObjects.Html\Limbo.FormattingObjects.Html\bin\Debug\netstandard2.0\Limbo.FormattingObjects.Html.deps.json
+D:\Repositories\Limbo.FormattingObjects.Html\Limbo.FormattingObjects.Html\bin\Debug\netstandard2.0\Limbo.FormattingObjects.Html.dll
+D:\Repositories\Limbo.FormattingObjects.Html\Limbo.FormattingObjects.Html\bin\Debug\netstandard2.0\Limbo.FormattingObjects.Html.pdb
+D:\Repositories\Limbo.FormattingObjects.Html\Limbo.FormattingObjects.Html\obj\Debug\netstandard2.0\Limbo.FormattingObjects.Html.dll
+D:\Repositories\Limbo.FormattingObjects.Html\Limbo.FormattingObjects.Html\obj\Debug\netstandard2.0\Limbo.FormattingObjects.Html.pdb

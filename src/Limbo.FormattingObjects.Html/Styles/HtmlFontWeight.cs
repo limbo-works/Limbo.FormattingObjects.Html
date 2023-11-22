@@ -6,6 +6,7 @@
     /// </summary>
     /// <see cref="http://www.htmldog.com/references/css/properties/font-weight/"/>
     public enum HtmlFontWeight {
+        Inherit,
         Normal,
         Bold
     }

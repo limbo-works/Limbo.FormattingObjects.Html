@@ -7,6 +7,8 @@
     /// <see cref="http://www.htmldog.com/references/css/properties/font-style/"/>
     public enum HtmlFontStyle {
 
+        Inherit,
+
         Normal,
 
         Italic

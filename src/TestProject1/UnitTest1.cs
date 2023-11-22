@@ -14,6 +14,7 @@ public class UnitTest1 {
             <p><strong>Hello World</strong></p>
             <p>Hej verden</p>
             <p><em>Hallo Welt</em></p>
+            <p><span>Hej världen</span></p>
             """;
 
         const string expected = """
@@ -24,6 +25,9 @@ public class UnitTest1 {
               <block margin-top="10px"><![CDATA[Hej verden]]></block>
               <block margin-top="10px">
                 <inline font-style="italic"><![CDATA[Hallo Welt]]></inline>
+              </block>
+              <block margin-top="10px">
+                <inline><![CDATA[Hej världen]]></inline>
               </block>
             </block-container>
             """;

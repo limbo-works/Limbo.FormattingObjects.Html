@@ -6,7 +6,7 @@
     /// <see cref="http://www.htmldog.com/references/css/properties/text-decoration/"/>
     public enum HtmlTextDecoration {
 
-        None,
+        Inherit,
 
         Underline,
 

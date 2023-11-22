@@ -24,6 +24,7 @@ public class HtmlParser : IHtmlParser {
             "b" => ParseStrong(node),
             "br" => ParseLineBreak(node),
             "div" => ParseDiv(node),
+            "font" => ParseSpan(node),
             "i" => ParseEm(node),
             "em" => ParseEm(node),
             "html" => ParseHtml(node),

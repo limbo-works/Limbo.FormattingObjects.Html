@@ -33,6 +33,7 @@ public class HtmlToFoConverter : IHtmlToFoConverter {
             HtmlTable table => ConvertElement(table),
             HtmlUnorderedList list => ConvertElement(list),
             HtmlRoot root => ConvertElement(root),
+            HtmlU u => ConvertElement(u),
             _ => throw new InvalidOperationException($"Unsupported HTML element '{html.GetType()}'.")
         };
     }
@@ -300,6 +301,18 @@ public class HtmlToFoConverter : IHtmlToFoConverter {
         FoBlockContainer fo = new();
 
         ConvertChildren(root, fo);
+
+        return fo;
+
+    }
+
+    protected virtual FoElement? ConvertElement(HtmlU u) {
+
+        FoInline fo = new() {
+            TextDecoration = FoTextDecoration.Underline
+        };
+
+        ConvertChildren(u, fo);
 
         return fo;
 

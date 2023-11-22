@@ -37,6 +37,7 @@ public class HtmlParser : IHtmlParser {
             "#comment" => null,
             "o:p" => null,
             "xml" => null,
+            "u" => ParseU(node),
             _ => throw new InvalidOperationException($"Unsupported element '{node.Name}'.")
         };
     }
@@ -135,6 +136,13 @@ public class HtmlParser : IHtmlParser {
     protected virtual HtmlText? ParseText(HtmlAgilityPack.HtmlNode node) {
         string text = node.InnerText.Trim();
         return string.IsNullOrWhiteSpace(text) ? null : new HtmlText(node, text);
+    }
+
+    protected virtual HtmlU ParseU(HtmlAgilityPack.HtmlNode node) {
+        HtmlU element = new();
+        ParseAttributes(node, element);
+        ParseChildren(node, element);
+        return element;
     }
 
 }

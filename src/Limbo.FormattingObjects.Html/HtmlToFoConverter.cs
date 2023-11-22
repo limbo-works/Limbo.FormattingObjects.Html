@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Xml.Linq;
 using Limbo.FormattingObjects.Graphics;
 using Limbo.FormattingObjects.Html.Elements;
 using Limbo.FormattingObjects.Inline;
@@ -34,6 +35,8 @@ public class HtmlToFoConverter : IHtmlToFoConverter {
             HtmlUnorderedList list => ConvertElement(list),
             HtmlRoot root => ConvertElement(root),
             HtmlU u => ConvertElement(u),
+            HtmlSup sup => ConvertElement(sup),
+            HtmlSub sub => ConvertElement(sub),
             _ => throw new InvalidOperationException($"Unsupported HTML element '{html.GetType()}'.")
         };
     }
@@ -318,6 +321,32 @@ public class HtmlToFoConverter : IHtmlToFoConverter {
 
     }
 
+    protected virtual FoElement? ConvertElement(HtmlSup sup) {
+
+        FoInlineSup fo = new() {
+            FontSize = "0.83em",
+            BaselineShift = "super"
+        };
+
+        ConvertChildren(sup, fo);
+
+        return fo;
+
+    }
+
+    protected virtual FoElement? ConvertElement(HtmlSub sub) {
+
+        FoInlineSup fo = new() {
+            FontSize = "0.83em",
+            BaselineShift = "sub"
+        };
+
+        ConvertChildren(sub, fo);
+
+        return fo;
+
+    }
+
     protected virtual FoText ConvertText(HtmlText text) {
         return new FoText(text.Value.HtmlDecode());
     }
@@ -325,6 +354,20 @@ public class HtmlToFoConverter : IHtmlToFoConverter {
     protected virtual string GetAbsoluteUrl(string url) {
         if (url.StartsWith("/")) throw new NotImplementedException();
         return url;
+    }
+
+    public class FoInlineSup : FoInline {
+
+        public string BaselineShift { get; set; }
+
+        protected override void RenderAttributes(XElement element, FoRenderOptions options) {
+            base.RenderAttributes(element, options);
+
+            if (!string.IsNullOrWhiteSpace(BaselineShift)) {
+                element.Add(new XAttribute("baseline-shift", BaselineShift));
+            }
+        }
+
     }
 
 }

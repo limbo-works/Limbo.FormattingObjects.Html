@@ -38,6 +38,8 @@ public class HtmlParser : IHtmlParser {
             "o:p" => null,
             "xml" => null,
             "u" => ParseU(node),
+            "sup" => ParseSup(node),
+            "sub" => ParseSub(node),
             _ => throw new InvalidOperationException($"Unsupported element '{node.Name}'.")
         };
     }
@@ -134,12 +136,26 @@ public class HtmlParser : IHtmlParser {
     }
 
     protected virtual HtmlText? ParseText(HtmlAgilityPack.HtmlNode node) {
-        string text = node.InnerText.Trim();
+        string text = node.InnerText;
         return string.IsNullOrWhiteSpace(text) ? null : new HtmlText(node, text);
     }
 
     protected virtual HtmlU ParseU(HtmlAgilityPack.HtmlNode node) {
         HtmlU element = new();
+        ParseAttributes(node, element);
+        ParseChildren(node, element);
+        return element;
+    }
+
+    protected virtual HtmlSup ParseSup(HtmlAgilityPack.HtmlNode node) {
+        HtmlSup element = new();
+        ParseAttributes(node, element);
+        ParseChildren(node, element);
+        return element;
+    }
+
+    protected virtual HtmlSub ParseSub(HtmlAgilityPack.HtmlNode node) {
+        HtmlSub element = new();
         ParseAttributes(node, element);
         ParseChildren(node, element);
         return element;

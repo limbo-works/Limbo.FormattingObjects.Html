@@ -34,6 +34,9 @@ public class HtmlParser : IHtmlParser {
             "strong" => ParseStrong(node),
             "ul" => ParseUnorderedList(node),
             "#text" => ParseText(node),
+            "#comment" => null,
+            "o:p" => null,
+            "xml" => null,
             _ => throw new InvalidOperationException($"Unsupported element '{node.Name}'.")
         };
     }

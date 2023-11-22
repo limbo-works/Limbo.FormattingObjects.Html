@@ -8,6 +8,35 @@ namespace TestProject1;
 public class UnitTest1 {
 
     [TestMethod]
+    public void HtmlDecode() {
+
+        const string html = """
+            <p><strong>L&#230;rredet skal v&#230;re fastholdt overalt ved ensartet klistring til papunderlag eller isolerpuds.Overfladen skal overalt v&#230;re fastsiddende til underlaget.</strong></p>
+            """;
+
+        const string expected = """
+            <block-container xmlns="http://www.w3.org/1999/XSL/Format">
+              <block margin-top="10px">
+                <inline font-weight="bold"><![CDATA[Lærredet skal være fastholdt overalt ved ensartet klistring til papunderlag eller isolerpuds.Overfladen skal overalt være fastsiddende til underlaget.]]></inline>
+              </block>
+            </block-container>
+            """;
+
+        IHtmlParser parser = new HtmlParser();
+        IHtmlToFoConverter converter = new HtmlToFoConverter();
+
+        HtmlElement result = parser.Parse(html);
+
+        FoElement? fo = converter.Convert(result);
+        Assert.IsNotNull(fo);
+
+        string actual = fo.ToString();
+
+        Assert.AreEqual(expected, actual);
+
+    }
+
+    [TestMethod]
     public void Paragraphs() {
 
         const string html = """

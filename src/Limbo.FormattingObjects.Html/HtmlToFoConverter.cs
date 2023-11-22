@@ -4,6 +4,7 @@ using Limbo.FormattingObjects.Html.Elements;
 using Limbo.FormattingObjects.Inline;
 using Limbo.FormattingObjects.Lists;
 using Limbo.FormattingObjects.Styles;
+using Skybrud.Essentials.Strings.Extensions;
 using skybrudDk.Pdf.Html.Styles;
 
 #pragma warning disable CS8632
@@ -41,7 +42,7 @@ public class HtmlToFoConverter : IHtmlToFoConverter {
         foreach (HtmlNode child in html.Children) {
 
             if (child is HtmlText text) {
-                fo.Add(new FoText(text.Value));
+                fo.Add(new FoText(text.Value.HtmlDecode()));
                 continue;
             }
 
@@ -305,7 +306,7 @@ public class HtmlToFoConverter : IHtmlToFoConverter {
     }
 
     protected virtual FoText ConvertText(HtmlText text) {
-        return new FoText(text.Value);
+        return new FoText(text.Value.HtmlDecode());
     }
 
     protected virtual string GetAbsoluteUrl(string url) {

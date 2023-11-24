@@ -40,6 +40,7 @@ public class HtmlParser : IHtmlParser {
             "u" => ParseU(node),
             "sup" => ParseSup(node),
             "sub" => ParseSub(node),
+            "img" => ParseImg(node),
             _ => throw new InvalidOperationException($"Unsupported element '{node.Name}'.")
         };
     }
@@ -156,6 +157,13 @@ public class HtmlParser : IHtmlParser {
 
     protected virtual HtmlSub ParseSub(HtmlAgilityPack.HtmlNode node) {
         HtmlSub element = new();
+        ParseAttributes(node, element);
+        ParseChildren(node, element);
+        return element;
+    }
+
+    protected virtual HtmlImg ParseImg(HtmlAgilityPack.HtmlNode node) {
+        HtmlImg element = new(node);
         ParseAttributes(node, element);
         ParseChildren(node, element);
         return element;

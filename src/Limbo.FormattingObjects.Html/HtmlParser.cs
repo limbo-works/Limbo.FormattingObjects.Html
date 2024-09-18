@@ -33,6 +33,7 @@ public class HtmlParser : IHtmlParser {
             "span" => ParseSpan(node),
             "strong" => ParseStrong(node),
             "ul" => ParseUnorderedList(node),
+            "ol" => ParseOrderedList(node),
             "#text" => ParseText(node),
             "#comment" => null,
             "o:p" => null,
@@ -117,6 +118,13 @@ public class HtmlParser : IHtmlParser {
 
     protected virtual HtmlUnorderedList ParseUnorderedList(HtmlAgilityPack.HtmlNode node) {
         HtmlUnorderedList element = new(node);
+        ParseAttributes(node, element);
+        ParseChildren(node, element);
+        return element;
+    }
+
+    protected virtual HtmlOrderedList ParseOrderedList(HtmlAgilityPack.HtmlNode node) {
+        HtmlOrderedList element = new(node);
         ParseAttributes(node, element);
         ParseChildren(node, element);
         return element;

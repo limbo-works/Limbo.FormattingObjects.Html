@@ -109,4 +109,39 @@ public class UnitTest1 {
 
     }
 
+
+    [TestMethod]
+    public void OrderedList() {
+
+        const string html = """
+            <ol>
+                <li>Hello World</li>
+            </ol>
+            """;
+
+        const string expected = """
+            <block-container xmlns="http://www.w3.org/1999/XSL/Format">
+              <list-block margin-top="15px">
+                <list-item margin-top="5px">
+                  <list-item-label start-indent="15px"><![CDATA[1.]]></list-item-label>
+                  <list-item-body start-indent="35px"><![CDATA[Hello World]]></list-item-body>
+                </list-item>
+              </list-block>
+            </block-container>
+            """;
+
+        IHtmlParser parser = new HtmlParser();
+        IHtmlToFoConverter converter = new HtmlToFoConverter();
+
+        HtmlElement result = parser.Parse(html);
+
+        FoElement? fo = converter.Convert(result);
+        Assert.IsNotNull(fo);
+
+        string actual = fo.ToString();
+
+        Assert.AreEqual(expected, actual);
+
+    }
+
 }

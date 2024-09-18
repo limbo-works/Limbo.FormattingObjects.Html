@@ -46,7 +46,7 @@ public class HtmlToFoConverter : IHtmlToFoConverter {
         foreach (HtmlNode child in html.Children) {
 
             if (child is HtmlText text) {
-                fo.Add(new FoText(text.Value.HtmlDecode()));
+                fo.Add(new FoBlock(new FoText(text.Value.HtmlDecode())));
                 continue;
             }
 
@@ -203,15 +203,15 @@ public class HtmlToFoConverter : IHtmlToFoConverter {
 
             FoListItem item = new() {
                 MarginTop = "5px",
-                Label = {
+                Label = new FoListItemLabel {
                     StartIndent = "15px"
                 },
-                Body = {
+                Body = new FoListItemBody {
                     StartIndent = "35px"
                 }
             };
 
-            item.Label.Add(new FoText(n++ + "."));
+            item.Label.Add(new FoBlock(new FoText(n++ + ".")));
 
             ConvertChildren(listItem, item.Body);
 
@@ -275,7 +275,7 @@ public class HtmlToFoConverter : IHtmlToFoConverter {
 
         foreach (HtmlNode child in element.Children) {
 
-            if (child is not HtmlListItem listItem) throw new InvalidOperationException($"Ordered list child must be of type '{typeof(HtmlListItem)}'. Found '{child.GetType()}'");
+            if (child is not HtmlListItem listItem) throw new InvalidOperationException($"Unordered list child must be of type '{typeof(HtmlListItem)}'. Found '{child.GetType()}'");
 
             FoListItem item = new() {
                 MarginTop = "5px",
